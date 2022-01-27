@@ -17,11 +17,3 @@ export const envRules = {
   SEMAPHORE_USER: [required],
   SEMAPHORE_PASSWORD: [required],
 };
-
-// validate env, to make sure it has been correctly defined
-export async function validateEnv() {
-  const [passes, error] = await validate(env, envRules);
-
-  if (passes === false) {
-  }
-}
