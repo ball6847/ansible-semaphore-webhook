@@ -1,9 +1,13 @@
 {
-	"deno.enable": true,
-	"deno.lint": true,
-	"deno.unstable": true,
-	"editor.formatOnSave": true,
-	"cSpell.words": [
-		"validasaur"
-	]
+  "deno.enable": true,
+  "deno.lint": true,
+  "deno.unstable": true,
+  "cSpell.words": [
+    "validasaur"
+  ],
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  }
 }
