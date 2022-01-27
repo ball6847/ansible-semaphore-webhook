@@ -1,5 +1,6 @@
 import { Application } from "./deno_modules/oak.ts";
 import { validate } from "./deno_modules/validasaur.ts";
+import { logger } from "./deno_modules/oak_logger.ts";
 import { env, envRules } from "./utils/env.ts";
 import { router } from "./router.ts";
 
@@ -13,7 +14,10 @@ if (envPasses === false) {
 }
 
 // register root router
-const app = new Application().use(router.routes());
+const app = new Application()
+  .use(logger.logger)
+  .use(logger.responseTime)
+  .use(router.routes());
 
 // start application
 await app.listen({ port: +env.HTTP_PORT });
