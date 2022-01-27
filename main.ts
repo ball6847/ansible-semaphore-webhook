@@ -19,4 +19,4 @@ const app = new Application()
   .use(router.routes());
 
 // start application
-await app.listen({ port: +env.HTTP_PORT });
+await app.listen({ port: env.HTTP_PORT });
