@@ -1,2 +1,2 @@
 dev:
-	deno run --allow-net --watch="./**/*.ts" main.ts
+	deno run --allow-net --allow-env --allow-read --watch="./**/*.ts" main.ts

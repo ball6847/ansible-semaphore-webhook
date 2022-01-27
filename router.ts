@@ -3,6 +3,6 @@ import { webhook } from './webhook.ts';
 
 export const router = new Router().use(
   '/webhook',
-  webhook.routes,
+  webhook.routes(),
   webhook.allowedMethods()
 );
