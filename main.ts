@@ -16,4 +16,4 @@ if (envPasses === false) {
 const app = new Application().use(router.routes());
 
 // start application
-await app.listen({ port: 8000 });
+await app.listen({ port: +env.HTTP_PORT });
