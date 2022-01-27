@@ -26,7 +26,7 @@ export async function triggerTask(
   templateId: number,
   option: TriggerOption,
 ): Promise<number | false> {
-  if (!ping(option) && !authenticate(option)) {
+  if (!await ping(option) && !await authenticate(option)) {
     throw new AnsibleSemaphoreAuthenticationError();
   }
   const url = `${option.url}/api/project/${projectId}/tasks`;
@@ -80,5 +80,5 @@ async function authenticate(option: TriggerOption): Promise<boolean> {
 async function ping(option: TriggerOption): Promise<boolean> {
   const url = `${option.url}/api/user`;
   const response = await fetch(url);
-  return response.status !== 200;
+  return response.status === 200;
 }
