@@ -1,11 +1,10 @@
 import { Application } from "./deno_modules/oak.ts";
-import { validate } from "./deno_modules/validasaur.ts";
 import { logger } from "./deno_modules/oak_logger.ts";
-import { env, envRules } from "./utils/env.ts";
+import { assertEnv, env } from "./utils/env.ts";
 import { router } from "./router.ts";
 
 // validate environment variables before starting the application
-const [envPasses, envError] = await validate(env, envRules);
+const [envPasses, envError] = await assertEnv();
 
 if (envPasses === false) {
   console.error("ENV validation failed");
