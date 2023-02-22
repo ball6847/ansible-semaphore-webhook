@@ -10,6 +10,7 @@ type TriggerOption = {
   url: string;
   user: string;
   password: string;
+  environment?: Record<string, string> | null;
 };
 
 /**
@@ -34,6 +35,7 @@ export async function triggerTask(
     project_id: projectId,
     template_id: templateId,
     commit_hash: null,
+    environment: option.environment ? JSON.stringify(option.environment) : "{}",
   };
   const response = await fetch(url, {
     method: "POST",

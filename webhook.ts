@@ -12,10 +12,13 @@ export const webhook = new Router()
   .post(
     "/trigger/:projectId/:templateId",
     async (ctx) => {
+      const body = await ctx.request.body().value;
+
       // gathering inputs
       const inputs = {
         projectId: ctx.params.projectId,
         templateId: ctx.params.templateId,
+        environment: body.environment || null,
         token: ctx.request.url.searchParams.get("token"),
       };
 
@@ -37,11 +40,16 @@ export const webhook = new Router()
       }
 
       // trigger ansible task
-      const taskId = await triggerTask(+inputs.projectId, +inputs.templateId, {
-        url: env.SEMAPHORE_URL,
-        user: env.SEMAPHORE_USER,
-        password: env.SEMAPHORE_PASSWORD,
-      });
+      const taskId = await triggerTask(
+        +inputs.projectId,
+        +inputs.templateId,
+        {
+          url: env.SEMAPHORE_URL,
+          user: env.SEMAPHORE_USER,
+          password: env.SEMAPHORE_PASSWORD,
+          environment: inputs.environment,
+        },
+      );
 
       // raise InternalServerError on task triggering failed
       if (taskId === false) {
