@@ -4,7 +4,10 @@
     "dotenv": "https://deno.land/x/dotenv@v3.2.2/mod.ts",
     "oak_logger": "https://deno.land/x/oak_logger@1.0.0/mod.ts",
     "oak": "https://deno.land/x/oak@v12.0.0/mod.ts",
-    "validasaur": "https://deno.land/x/validasaur@v0.15.0/mod.ts"
+    "validasaur": "https://deno.land/x/validasaur@v0.15.0/mod.ts",
+    "$app/utils/": "./src/utils/",
+    "$app/services/": "./src/services/",
+    "$app/ioc/": "./src/ioc/"
   },
   "tasks": {
     "start": "deno run --allow-net --allow-env --allow-read src/main.ts",

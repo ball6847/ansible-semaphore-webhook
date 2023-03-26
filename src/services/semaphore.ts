@@ -1,4 +1,4 @@
-import { fetch } from "./fetch.ts";
+import { fetch } from "$app/utils/fetch.ts";
 
 /**
  * indicate that library cannot authenticate user to ansible semaphore server

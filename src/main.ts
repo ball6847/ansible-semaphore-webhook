@@ -1,8 +1,8 @@
+import { logger } from "$app/ioc/logger.ts";
+import { assertEnv, env } from "$app/utils/env.ts";
 import { Application } from "oak";
 import oak_logger from "oak_logger";
-import { logger } from "./ioc/logger.ts";
 import { router } from "./router.ts";
-import { assertEnv, env } from "./utils/env.ts";
 
 // validate environment variables before starting the application
 const [envPasses, envError] = await assertEnv();
