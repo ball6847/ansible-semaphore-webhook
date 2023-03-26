@@ -1,9 +1,5 @@
 import { fetch } from "$app/utils/fetch.ts";
 
-/**
- * indicate that library cannot authenticate user to ansible semaphore server
- * will be thrown when no active session and authentication attempt failed
- */
 export class AnsibleSemaphoreAuthenticationError extends Error {}
 
 type TriggerOption = {
@@ -13,15 +9,6 @@ type TriggerOption = {
   environment?: Record<string, string> | null;
 };
 
-/**
- * Trigger a task
- *
- * @param projectId semaphore project id to trigger
- * @param templateId semaphore template id to trigger
- * @param option information about semaphore instance
- * @returns task id if success, false otherwise
- * @throws `AnsibleSemaphoreAuthenticationError` if no session and authentication attempt failed
- */
 export async function triggerTask(
   projectId: number,
   templateId: number,
@@ -56,12 +43,6 @@ export async function triggerTask(
   return task.id;
 }
 
-/**
- * Authenticate user against ansible semaphore instance
- *
- * @param option information about semaphore instance
- * @returns true on success, false otherwise
- */
 async function authenticate(option: TriggerOption): Promise<boolean> {
   const url = `${option.url}/api/auth/login`;
   const data = {
@@ -81,12 +62,6 @@ async function authenticate(option: TriggerOption): Promise<boolean> {
   return response.status === 204;
 }
 
-/**
- * Ping - simply call to `/api/user` endpoint to check if we still have active session
- *
- * @param option information about semaphore instance
- * @returns true if session is still active, false otherwise
- */
 async function ping(option: TriggerOption): Promise<boolean> {
   const url = `${option.url}/api/user`;
   const response = await fetch(url);

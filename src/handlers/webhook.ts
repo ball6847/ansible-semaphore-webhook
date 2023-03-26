@@ -4,6 +4,12 @@ import { env } from "$app/utils/env.ts";
 import { Handler } from "$app/utils/handler.ts";
 import { isIn, isNumeric, required, validate } from "validasaur";
 
+const validation = {
+  projectId: [required, isNumeric],
+  templateId: [required, isNumeric],
+  token: [required, isIn([env.WEBHOOK_TOKEN])],
+};
+
 export const webhookHandler: Handler = async ({ request, params }) => {
   const body = await request.body().value;
 
@@ -16,11 +22,7 @@ export const webhookHandler: Handler = async ({ request, params }) => {
   };
 
   // validate inputs
-  const [passes, errors] = await validate(inputs, {
-    projectId: [required, isNumeric],
-    templateId: [required, isNumeric],
-    token: [required, isIn([env.WEBHOOK_TOKEN])],
-  });
+  const [passes, errors] = await validate(inputs, validation);
 
   // raise BadRequestError on validation failed
   if (passes === false) {
@@ -65,4 +67,3 @@ export const webhookHandler: Handler = async ({ request, params }) => {
     },
   };
 };
-// wrapJsonContext();
