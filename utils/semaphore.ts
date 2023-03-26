@@ -26,7 +26,7 @@ export async function triggerTask(
   projectId: number,
   templateId: number,
   option: TriggerOption,
-): Promise<number | false> {
+): Promise<number | Error> {
   if (!await ping(option) && !await authenticate(option)) {
     throw new AnsibleSemaphoreAuthenticationError();
   }
@@ -45,7 +45,12 @@ export async function triggerTask(
     },
   });
   if (response.status !== 201) {
-    return false;
+    const err = new Error(
+      `Failed to trigger task: ${response.status} ${response.statusText}`,
+    );
+    err.cause = await response.text();
+    return err;
+    // return false;
   }
   const task = await response.json();
   return task.id;

@@ -40,7 +40,7 @@ export const webhook = new Router()
       }
 
       // trigger ansible task
-      const taskId = await triggerTask(
+      const result = await triggerTask(
         +inputs.projectId,
         +inputs.templateId,
         {
@@ -52,7 +52,9 @@ export const webhook = new Router()
       );
 
       // raise InternalServerError on task triggering failed
-      if (taskId === false) {
+      if (result instanceof Error) {
+        console.error(result.message);
+        console.error(result.cause);
         ctx.response.body = {
           error: "WebhookTriggerError",
         };
@@ -61,7 +63,7 @@ export const webhook = new Router()
       }
 
       // return created task id on success
-      ctx.response.body = { task_id: taskId };
+      ctx.response.body = { task_id: result };
       ctx.response.status = 201;
     },
   );
