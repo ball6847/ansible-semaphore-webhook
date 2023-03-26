@@ -68,6 +68,9 @@ async function authenticate(option: TriggerOption): Promise<boolean> {
     auth: option.user,
     password: option.password,
   };
+  if (Deno.env.get("DEBUG")) {
+    console.debug("authenticating to semaphore", { url, data });
+  }
   const response = await fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
