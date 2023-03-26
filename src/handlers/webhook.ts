@@ -1,11 +1,10 @@
 import { logger } from "$app/ioc/logger.ts";
 import { triggerTask } from "$app/services/semaphore.ts";
 import { env } from "$app/utils/env.ts";
-import { Handler, wrapJsonHandler } from "$app/utils/handler.ts";
-import { Router } from "oak";
+import { Handler } from "$app/utils/handler.ts";
 import { isIn, isNumeric, required, validate } from "validasaur";
 
-const handleWebhook: Handler = async ({ request, params }) => {
+export const webhookHandler: Handler = async ({ request, params }) => {
   const body = await request.body().value;
 
   // gathering inputs
@@ -67,9 +66,3 @@ const handleWebhook: Handler = async ({ request, params }) => {
   };
 };
 // wrapJsonContext();
-
-export const webhook = new Router()
-  .post(
-    "/trigger/:projectId/:templateId",
-    wrapJsonHandler(handleWebhook),
-  );

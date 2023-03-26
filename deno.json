@@ -7,7 +7,8 @@
     "validasaur": "https://deno.land/x/validasaur@v0.15.0/mod.ts",
     "$app/utils/": "./src/utils/",
     "$app/services/": "./src/services/",
-    "$app/ioc/": "./src/ioc/"
+    "$app/ioc/": "./src/ioc/",
+    "$app/handlers/": "./src/handlers/"
   },
   "tasks": {
     "start": "deno run --allow-net --allow-env --allow-read src/main.ts",

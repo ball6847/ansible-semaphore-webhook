@@ -1,5 +1,12 @@
+import { webhookHandler } from "$app/handlers/webhook.ts";
+import { wrapJsonHandler } from "$app/utils/handler.ts";
 import { Router } from "oak";
-import { webhook } from "./webhook.ts";
+
+const webhook = new Router()
+  .post(
+    "/trigger/:projectId/:templateId",
+    wrapJsonHandler(webhookHandler),
+  );
 
 export const router = new Router()
   .use(
