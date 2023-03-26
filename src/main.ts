@@ -1,5 +1,6 @@
 import { Application } from "oak";
-import logger from "oak_logger";
+import oak_logger from "oak_logger";
+import { logger } from "./ioc/logger.ts";
 import { router } from "./router.ts";
 import { assertEnv, env } from "./utils/env.ts";
 
@@ -14,9 +15,11 @@ if (envPasses === false) {
 
 // register root router
 const app = new Application()
-  .use(logger.logger)
-  .use(logger.responseTime)
+  .use(oak_logger.logger)
+  .use(oak_logger.responseTime)
   .use(router.routes());
+
+logger.info(`Server started on port ${env.HTTP_PORT}`);
 
 // start application
 await app.listen({ port: env.HTTP_PORT });
