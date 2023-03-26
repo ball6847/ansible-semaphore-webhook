@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine-1.18.0
+FROM denoland/deno:alpine-1.31
 
 COPY . /app
 WORKDIR /app
@@ -8,4 +8,4 @@ RUN deno cache main.ts
 
 EXPOSE 3000
 
-CMD ["run", "--allow-env", "--allow-net", "--allow-read", "main.ts"]
+CMD ["run", "--allow-env", "--allow-net", "--allow-read", "src/main.ts"]

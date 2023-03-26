@@ -1,10 +1,5 @@
-import { Router } from "./deno_modules/oak.ts";
-import {
-  isIn,
-  isNumeric,
-  required,
-  validate,
-} from "./deno_modules/validasaur.ts";
+import { Router } from "oak";
+import { isIn, isNumeric, required, validate } from "validasaur";
 import { env } from "./utils/env.ts";
 import { triggerTask } from "./utils/semaphore.ts";
 

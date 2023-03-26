@@ -1,11 +1,5 @@
-import { configAsync } from "../deno_modules/dotenv.ts";
-import {
-  either,
-  isNumeric,
-  required,
-  startsWith,
-  validate,
-} from "../deno_modules/validasaur.ts";
+import { configAsync } from "dotenv";
+import { either, isNumeric, required, startsWith, validate } from "validasaur";
 
 // pre loading configuration from .env file
 await configAsync({

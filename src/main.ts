@@ -1,7 +1,7 @@
-import { Application } from "./deno_modules/oak.ts";
-import { logger } from "./deno_modules/oak_logger.ts";
-import { assertEnv, env } from "./utils/env.ts";
+import { Application } from "oak";
+import logger from "oak_logger";
 import { router } from "./router.ts";
+import { assertEnv, env } from "./utils/env.ts";
 
 // validate environment variables before starting the application
 const [envPasses, envError] = await assertEnv();

@@ -1,4 +1,4 @@
-import { Router } from "./deno_modules/oak.ts";
+import { Router } from "oak";
 import { webhook } from "./webhook.ts";
 
 export const router = new Router()
