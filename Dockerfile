@@ -1,10 +1,10 @@
-FROM denoland/deno:alpine-1.31
+FROM denoland/deno:alpine-1.32.1
 
 COPY . /app
 WORKDIR /app
 USER deno
 
-RUN deno cache main.ts
+RUN deno cache src/main.ts
 
 EXPOSE 3000
 

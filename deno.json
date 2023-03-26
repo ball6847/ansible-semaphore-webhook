@@ -1,14 +1,13 @@
 {
   "imports": {
-    "another_cookiejar": "https://deno.land/x/another_cookiejar@v4.0.0/mod.ts",
+    "another_cookiejar": "https://deno.land/x/another_cookiejar@v5.0.3/mod.ts",
+    "alosaur": "https://deno.land/x/alosaur@v0.38.0/mod.ts",
+    "class-transformer": "npm:class-transformer@^0.5.1",
+    "class-validator": "npm:class-validator@^0.14.0",
     "dotenv": "https://deno.land/x/dotenv@v3.2.2/mod.ts",
-    "oak_logger": "https://deno.land/x/oak_logger@1.0.0/mod.ts",
-    "oak": "https://deno.land/x/oak@v12.0.0/mod.ts",
+    "log": "https://deno.land/std@0.181.0/log/mod.ts",
     "validasaur": "https://deno.land/x/validasaur@v0.15.0/mod.ts",
-    "$app/utils/": "./src/utils/",
-    "$app/services/": "./src/services/",
-    "$app/ioc/": "./src/ioc/",
-    "$app/handlers/": "./src/handlers/"
+    "$app/utils/": "./src/utils/"
   },
   "tasks": {
     "start": "deno run --allow-net --allow-env --allow-read src/main.ts",
